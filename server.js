@@ -1,6 +1,8 @@
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
+const Fitness = require("./public/models/fitness");
+const { db } = require("./public/models/fitness");
 
 const PORT = process.env.PORT || 3000;
 
@@ -15,8 +17,32 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populate", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitness", { useNewUrlParser: true });
 
+// Routes
+
+// Post Route
+app.post("/submit", ({body}, res) => {
+  const fitness = new Fitness(body);
+  Fitness.create(fitness)
+    .then(dbFitness => {
+      res.json(dbFitness)
+    })
+    .catch(err => {
+      res.json(err)
+    })
+})
+
+// Get Route
+app.get("/exercise", (req, res) => {
+  db.Fitness.find({})
+  .then(dbFitness => {
+    res.json(dbFitness)
+  })
+  .catch(err => {
+    res.json(err)
+  })
+})
 
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}!`);
