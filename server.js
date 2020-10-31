@@ -2,7 +2,7 @@ const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const Fitness = require("./public/models/fitness");
-const { db } = require("./public/models/fitness");
+// const { db } = require("./public/models/fitness");
 
 const PORT = process.env.PORT || 3000;
 
@@ -27,6 +27,7 @@ app.post("/submit", ({body}, res) => {
   Fitness.create(fitness)
     .then(dbFitness => {
       res.json(dbFitness)
+      console.log("Success!")
     })
     .catch(err => {
       res.json(err)
@@ -35,7 +36,7 @@ app.post("/submit", ({body}, res) => {
 
 // Get Route
 app.get("/exercise", (req, res) => {
-  db.Fitness.find({})
+  Fitness.find({})
   .then(dbFitness => {
     res.json(dbFitness)
   })

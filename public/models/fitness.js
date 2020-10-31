@@ -7,6 +7,12 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const FitnessSchema = new Schema ({
+    day: {
+        type: String,
+        required: "Select day to exercise",
+        unique: true,
+    },
+    
     name: {
         type: String,
         trim: true,
@@ -30,6 +36,10 @@ const FitnessSchema = new Schema ({
     },
 
     duration: {
+        type: Number,
+    },
+
+    distance: {
         type: Number,
     }
 })
