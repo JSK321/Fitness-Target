@@ -29,8 +29,9 @@ $("#submitBtn").on("click", function (event) {
 
 function displayExercise() {
     $.getJSON("/exercise", function(data){
-        console.log(data)
         for(let i = 0; i < data.length; i++){
+            $(".userCard").append(`<div class="card fitnessCard"><div class="card-header day"></div></div>`)
+            $(".userCard").append(`<ul class="list-group list-group-flush exercise"></ul>`)
             $(".day").append(`<h3>${data[i].day}</h3>`)
             $(".exercise").append(`<li class="list-group-item">${data[i].name}</li>`)
             $(".exercise").append(`<li class="list-group-item">${data[i].type}</li>`)
