@@ -3,45 +3,27 @@
 // if the exercise is a cardio exercise, track distance traveled.
 
 const mongoose = require("mongoose");
-
 const Schema = mongoose.Schema;
 
 const FitnessSchema = new Schema ({
-    day: {
-        type: String,
-        required: "Select day to exercise",
-        unique: true,
-    },
-    
     name: {
         type: String,
-        trim: true,
-        required: "Name of exercise is required."
-    }, 
-    
-    type: {
-        type: String,
-        trim: true,
-        required: "Type of exercise is required."
+        unique: true
     },
 
-    sets: {
-        type: Number,
-        required: true,
-    },
+    weight: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Weight"
+        }
+    ],
 
-    reps: {
-        type: Number,
-        required: true,
-    },
-
-    duration: {
-        type: Number,
-    },
-
-    distance: {
-        type: Number,
-    }
+    cardio: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Cardio"
+        }
+    ]
 })
 
 const Fitness = mongoose.model("Fitness", FitnessSchema);
