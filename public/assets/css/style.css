@@ -4,6 +4,16 @@
     /* width: 18rem */
 }
 
-#exercise0, #exercise1, #exercise2, #exercise3, #exercise4, #exercise5, #exercise6 {
+#weightExercise0, #weightExercise1, #weightExercise2, #weightExercise3, #weightExercise4, #weightExercise5, #weightExercise6 {
     text-align: center;
+}
+#cardioExercise0, #cardioExercise1, #cardioExercise2, #cardioExercise3, #cardioExercise4, #cardioExercise5, #cardioExercise6 {
+    text-align: center;
+}
+
+.imgCenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
 }

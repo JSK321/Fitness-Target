@@ -77,8 +77,8 @@ $("#cardioSubmitBtn").on("click", function(event){
 function displayWeightExercise() {
     $.getJSON("/weights/", function (data) {
         for (let i = 0; i < data.length; i++) {
-            $(".userCards").append(`<div class="weightInput" id="weightCard${i}"></div>`)
-            $("#weightCard" + i).append(`<div class="col-md-12" id="weightsCard${i}"></div>`)
+            $(".weightCards").append(`<div class="weightInput" id="weightCard${i}"></div>`)
+            $("#weightCard" + i).append(`<div class="" id="weightsCard${i}"></div>`)
             $("#weightsCard" + i).append(`<div class="card fitnessCard"><div class="card-header" id="weightsDay${i}"></div></div>`)
             $("#weightsCard" + i).append(`<ul class="list-group list-group-flush" id="weightExercise${i}"></ul>`)
             $("#weightsDay" + i).append(`<h3><em>${data[i].weightDay}</em></h3>`)
@@ -88,20 +88,22 @@ function displayWeightExercise() {
             $("#weightExercise" + i).append(`<li class="list-group-item"><strong>Number of Repetitions:</strong>  <em>${data[i].reps} Reps</em></li>`)
             $("#weightExercise" + i).append(`<li class="list-group-item"><strong>Duration of Work-Out:</strong> <em>${data[i].weightDur} Minutes</em></li>`)
         }
+        // $(".fitnessCard").append(`<div><button class="col-md-2">Update</button><button class="col-md-2">Delete</button></div>`)
     })
 }
 
 function displayCardioExercise() {
     $.getJSON("/cardio", function(data) {
         for(let i=0; i<data.length; i++){
-            $(".userCards").append(`<div class="userInput" id="cardioCard${i}"></div>`)
-            $("#cardioCard" + i).append(`<div class="col-md-12" id="cardiosCard${i}"></div>`)
+            $(".cardioCards").append(`<div class="userInput" id="cardioCard${i}"></div>`)
+            $("#cardioCard" + i).append(`<div class="" id="cardiosCard${i}"></div>`)
             $("#cardiosCard" + i).append(`<div class="card fitnessCard"><div class="card-header" id="cardioDay${i}"></div></div>`)
             $("#cardiosCard" + i).append(`<ul class="list-group list-group-flush" id="cardioExercise${i}"></ul>`)
             $("#cardioDay" + i).append(`<h3><em>${data[i].cardioDay}</em></h3>`)
             $("#cardioExercise" + i).append(`<li class="list-group-item"><strong>Duration of Cardio:</strong> <em>${data[i].cardioDur} Minutes</em></li>`)
             $("#cardioExercise" + i).append(`<li class="list-group-item"><strong>Distance Traveled:</strong> <em>${data[i].distance} Miles</em></li>`)
         }
+        $(".fitnessCard").append(`<div><button class="col-md-2">Update</button><button class="col-md-2">Delete</button></div>`)
     })
 }
 
