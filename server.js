@@ -16,7 +16,14 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitnessdb", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitnessdb",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  }
+);
 
 db.Fitness.create({ name: "Fitness Plan" })
   .then(dbFitness => {
@@ -122,7 +129,7 @@ app.delete("/delete/:id", (req, res) => {
 //   },
 //   {
 //     $set: {
-      
+
 //     }
 //   })
 // })
