@@ -1,9 +1,30 @@
-.weightFitnessCard, .cardioFitnessCard {
-    text-align: center;
-    /* background-color: blueviolet; */
-    /* width: 18rem */
+body {
+  background-color: rgb(21, 21, 21);
 }
 
+.weightFitnessCard, .cardioFitnessCard {
+    text-align: center;
+    background-color: firebrick;
+   
+}
+
+.card-footer {
+  background-color: firebrick;
+}
+.btn, .btn-block {
+  border-radius: 15px;
+  background-color:lightgoldenrodyellow;
+  color:black;
+}
+.list-group-item {
+  background-color:lightgoldenrodyellow;
+  color:black;
+}
+
+.form-control {
+  background-color:aliceblue;
+  border-radius: 15px;
+}
 .imgCenter {
   display: block;
   margin-left: auto;
@@ -16,5 +37,12 @@
 }
 
 .updateBtn, .deleteBtn {
-   width:25%
+  width:25%;
+  border-radius: 15px;
+  background-color:lightgoldenrodyellow;
+  color:black;
+}
+
+h1,h2,h3 {
+  color:lightgoldenrodyellow;
 }
