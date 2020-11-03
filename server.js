@@ -2,6 +2,7 @@ const express = require("express");
 const logger = require("morgan");
 const mongojs = require("mongojs");
 const mongoose = require("mongoose");
+var path = require("path");
 
 const PORT = process.env.PORT || 3000;
 
@@ -32,6 +33,10 @@ db.Fitness.create({ name: "Fitness Plan" })
   .catch(({ message }) => {
     console.log(message)
   })
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/index.html"));
+})
 
 //  Post Routes
 app.post("/submit", ({ body }, res) => {
