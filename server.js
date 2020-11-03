@@ -29,7 +29,7 @@ db.Fitness.create({ name: "Fitness Plan" })
 //  Post Routes
 app.post("/submit", ({ body }, res) => {
   console.log(Object.keys(body).length)
-  if(Object.keys(body).length >= 5) {
+  if (Object.keys(body).length >= 5) {
     db.Weight.create(body)
       .then(({ _id }) => db.Fitness.findOneAndUpdate({}, { $push: { weight: _id } }, { new: true }))
       .then(dbWeight => {
@@ -38,7 +38,7 @@ app.post("/submit", ({ body }, res) => {
       .catch(err => {
         res.json(err)
       })
-  } else if (Object.keys(body).length <= 3){
+  } else if (Object.keys(body).length <= 3) {
     db.Cardio.create(body)
       .then(({ _id }) => db.Fitness.findOneAndUpdate({}, { $push: { cardio: _id } }, { new: true }))
       .then(dbCardio => {
@@ -47,7 +47,7 @@ app.post("/submit", ({ body }, res) => {
       .catch(err => {
         res.json(err)
       })
-  } 
+  }
 })
 
 app.get("/weights", (req, res) => {
@@ -83,16 +83,42 @@ app.get("/populated", (req, res) => {
     })
 })
 
-app.delete("/delete/:id", (req,res) => {
-  db.Fitness.remove({_id: mongojs.ObjectId(req.params.id)}, (err,data) =>{
-    if(err){
+app.delete("/delete/:id", (req, res) => {
+  db.Cardio.remove({ _id: mongojs.ObjectId(req.params.id) }, (err, data) => {
+    if (err) {
       console.log(err)
       res.status(500).end()
-    } else {
-      res.json(data)
     }
+    db.Weight.remove({ _id: mongojs.ObjectId(req.params.id) }, (err, data) => {
+      if (err) {
+        console.log(err)
+        res.status(500).end()
+      } 
+      db.Fitness.update({}, {
+        $pull: {
+          cardio: {
+            $in: mongojs.ObjectId(req.params.id)
+          },
+          weight: {
+            $in: mongojs.ObjectId(req.params.id)
+          }
+        }
+      }, (err, data) => {
+        if (err) {
+          console.log(err)
+          res.status(500).end()
+        } else {
+          res.json(data)
+        }
+      })
+    })
   })
 })
+
+
+// app.post("/update/:id", (req,res) => {
+//   db.Fitness.update({}, {})
+// })
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
