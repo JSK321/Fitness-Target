@@ -93,7 +93,7 @@ app.delete("/delete/:id", (req, res) => {
       if (err) {
         console.log(err)
         res.status(500).end()
-      } 
+      }
       db.Fitness.update({}, {
         $pull: {
           cardio: {
@@ -117,7 +117,14 @@ app.delete("/delete/:id", (req, res) => {
 
 
 // app.post("/update/:id", (req,res) => {
-//   db.Fitness.update({}, {})
+//   db.Cardio.update({
+//     _id: mongojs.ObjectId(req.params.id)
+//   },
+//   {
+//     $set: {
+      
+//     }
+//   })
 // })
 
 app.listen(PORT, () => {
