@@ -82,69 +82,17 @@ app.get("/populated", (req, res) => {
       res.json(err)
     })
 })
-// Post Route
-// app.post("/submit", ({body}, res) => {
-//   const fitness = new Fitness(body);
-//   Fitness.create(fitness)
-//     .then(dbFitness => {
-//       res.json(dbFitness)
-//       console.log("Success!")
-//     })
-//     .catch(err => {
-//       res.json(err)
-//     })
-// })
 
-
-// app.post("/submit", ({body}, res) => {
-//   Fitness.create(body)
-//     .then(({_id}) => Fitness.findOneAndUpdate({}, {$push: {weight: _id}}, {new: true}))
-//     .then(fitness => {
-//       res.json(fitness)
-//     })
-//     .catch(err => {
-//       res.json(err)
-//     })
-// })
-
-// Get Route
-// app.get("/exercise", (req, res) => {
-//   Fitness.find({})
-//   .then(dbFitness => {
-//     res.json(dbFitness)
-//   })
-//   .catch(err => {
-//     res.json(err)
-//   })
-// })
-
-// app.get("/weights", (req,res) => {
-//   Weight.find({})
-//     .then(data => {
-//       res.json(data)
-//     })
-// })
-
-// Get Route by ID
-// app.get("/exercise/:id", (req, res) => {
-//   Fitness.findOne({_id: mongojs.ObjectId(req.params.id)})
-//   .then(dbFitness => {
-//     res.json(dbFitness)
-//   })
-//   .catch(err => {
-//     res.json(err)
-//   })
-// })
-
-// Get Route by populate
-// app.get("/populatedWeightsExercise", (req, res) =>{
-//   Fitness.find({}).populate("weight").then(data => {
-//     console.log(data)
-//     res.json(data);
-//   }).catch(err => {
-//     res.json(err);
-//   })
-// })
+app.delete("/delete/:id", (req,res) => {
+  db.Fitness.remove({_id: mongojs.ObjectId(req.params.id)}, (err,data) =>{
+    if(err){
+      console.log(err)
+      res.status(500).end()
+    } else {
+      res.json(data)
+    }
+  })
+})
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);

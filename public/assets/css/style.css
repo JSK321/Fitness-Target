@@ -1,14 +1,7 @@
-.fitnessCard {
+.weightFitnessCard, .cardioFitnessCard {
     text-align: center;
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
     /* width: 18rem */
-}
-
-#weightExercise0, #weightExercise1, #weightExercise2, #weightExercise3, #weightExercise4, #weightExercise5, #weightExercise6 {
-    text-align: center;
-}
-#cardioExercise0, #cardioExercise1, #cardioExercise2, #cardioExercise3, #cardioExercise4, #cardioExercise5, #cardioExercise6 {
-    text-align: center;
 }
 
 .imgCenter {
@@ -16,4 +9,12 @@
   margin-left: auto;
   margin-right: auto;
   width: 75%;
+}
+
+.weightInput, .cardioInput {
+    text-align:center;
+}
+
+.updateBtn, .deleteBtn {
+   width:25%
 }
